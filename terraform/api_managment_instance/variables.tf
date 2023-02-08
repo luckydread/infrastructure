@@ -12,9 +12,9 @@ variable "azurerm_api_management_name" {
 }
 variable "api_management_instance_publisher_name" {
   description = "The api publisher name"
-  type = string
+  type        = string
 }
 variable "publisher_email" {
   description = "The api publisher email"
-  type = string
+  type        = string
 }

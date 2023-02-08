@@ -81,35 +81,35 @@ variable "service_plan_id" {
 
 variable "storage_account_access_key" {
   description = "The storage account access key"
-  default     =  ""
+  default     = ""
   type        = string
 }
 
 variable "azurerm_api_management_name" {
   description = "The api management instance name."
   type        = string
-  default = "issuereportingapimanagmentz"
+  default     = "issuereportingapimanagmentz"
 }
 variable "api_management_instance_publisher_name" {
   description = "The api publisher name"
-  type = string
-  default = "issuepublishername"
+  type        = string
+  default     = "issuepublishername"
 }
 variable "publisher_email" {
   description = "The api publisher email"
-  type = string
-  default = "ibinder@infi.com"
+  type        = string
+  default     = "ibinder@infi.com"
 }
 
 variable "azurerm_storage_container_name" {
   description = "The storage container name"
   type        = string
-  default = "ibinderstoragecontainer"
+  default     = "ibinderstoragecontainer"
 }
 
 
 variable "azurerm_storage_container_access_type" {
   description = "The storage container access type"
   type        = string
-  default = ""
+  default     = ""
 }
