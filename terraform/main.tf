@@ -6,8 +6,8 @@ terraform {
     }
   }
   backend "azurerm" {
-    resource_group_name  = "chimbani-state"
-    storage_account_name = "chimbani"
+    resource_group_name  = "ibinder"
+    storage_account_name = "mandundundu"
     container_name       = "state"
     key                  = "terraform.tfstate"
   }
