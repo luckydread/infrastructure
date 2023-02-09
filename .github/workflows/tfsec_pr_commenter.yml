@@ -1,4 +1,4 @@
-name: TFSEC
+name: checkconfig
 on:
   push:
     branches: ["statistics"]

@@ -1,8 +1,9 @@
 name: Gitleaks
 on:
   workflow_run:
-    workflows: [TFSEC]
-    types: [completed]
+    workflows: [checkconfig]
+    types: 
+      - completed
 
 jobs:
   on-success:
