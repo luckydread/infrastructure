@@ -1,8 +1,11 @@
 name: TFSEC
-on: [push]
+on:
+  push:
+    branches:
+      - statistics
 jobs:
   tfsec:
-    name: tfsex
+    name: tfsec
     runs-on: ubuntu-latest
 
     permissions:
