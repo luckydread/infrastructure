@@ -25,7 +25,6 @@ module "app_service_plan" {
   azurerm_service_plan_os_type  = var.azurerm_service_plan_os_type
   azurerm_service_plan_sku_name = var.azurerm_service_plan_sku_name
 }
-sssssssssssssssssss
 module "application_insights" {
   source                            = "./application_insights"
   resource_group_location           = var.resource_group_location
