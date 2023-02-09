@@ -2,7 +2,7 @@ name: tfsec-pr-commenter
 on: [push]
 jobs:
   tfsec:
-    name: tfsec
+    name: tfsex
     runs-on: ubuntu-latest
 
     permissions:
