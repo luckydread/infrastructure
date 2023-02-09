@@ -1,8 +1,9 @@
 name: TFSEC
 on:
   push:
-    branches:
-      - statistics
+    branches: ["statistics"]
+  pull_request: 
+    branches: ["main"]
 jobs:
   tfsec:
     name: tfsec
