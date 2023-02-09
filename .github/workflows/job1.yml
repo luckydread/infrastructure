@@ -1,13 +1,19 @@
-name: Experiment 1
+name: First Task
+
 on: [push]
 
 jobs:
-  job1:
-    name: Job 1
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Sleep and Run
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
       run: |
-        echo "Sleeping for 10"
-        sleep 10
+        apt-get update
+        apt-get install -y <dependencies>
+
+    - name: Run tests
+      run: <tests command>

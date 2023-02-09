@@ -1,12 +1,19 @@
-name: Experiment 3
+name: First Task
+
 on: [push]
 
 jobs:
-  job3:
-    name: Job 3
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Will never run
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
       run: |
-        echo "If you can read this, the experiment failed"
+        apt-get update
+        apt-get install -y <dependencies>
+
+    - name: Run tests
+      run: <tests command>

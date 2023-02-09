@@ -1,0 +1,19 @@
+name: Main Workflow
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Trigger First Task
+      uses: ./.github/workflows/job1.yml
+
+    - name: Trigger Second Task
+      if: success()
+      uses: ./.github/workflows/second-task.yml
+
+    - name: Trigger Third Task
+      if: success()
+      uses: ./.github/workflows/job3.yml
