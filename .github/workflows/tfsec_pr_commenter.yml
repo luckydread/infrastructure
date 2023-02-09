@@ -1,6 +1,5 @@
 name: tfsec-pr-commenter
-on:
-  pull_request:
+on: [push]
 jobs:
   tfsec:
     name: tfsec PR commenter
