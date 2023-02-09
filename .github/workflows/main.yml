@@ -7,13 +7,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Trigger First Task
-      uses: ./.github/workflows/job1.yml
-
-    - name: Trigger Second Task
+    - name: Check terraform configuration
+      uses: ./.github/workflows/tfsec_pr_commenter.yml
+      
+    - name: Check repo for secrets
       if: success()
-      uses: ./.github/workflows/second-task.yml
-
-    - name: Trigger Third Task
-      if: success()
-      uses: ./.github/workflows/job3.yml
+      uses: ./.github/workflows/gitleaks_secrets_checker.yml
