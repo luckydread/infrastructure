@@ -17,7 +17,6 @@ provider "azurerm" {
   features {}
 }
 
-
 module "app_service_plan" {
   source                        = "./app_service_plan"
   resource_group_location       = var.resource_group_location

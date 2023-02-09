@@ -6,16 +6,9 @@ on:
 name: IbinderIssueReportingPipeline
 
 jobs:
-  scan-build-and-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
       - name: Log in with Azure
         uses: azure/login@v1
         with:
