@@ -1,14 +1,16 @@
-name: Experiment 2
-on: [push]
+on:
+  workflow_run:
+    workflows: [job3]
+    types: [completed]
 
 jobs:
-  job2:
-    name: Job 2
-    needs: job1
+  on-success:
     runs-on: ubuntu-latest
-
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-    - name: Dependant is Running
-      run: |
-        echo "Completed job 2, but triggering failure"
-        exit 1
+      - run: echo 'The triggering workflow passed'
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - run: echo 'The triggering workflow failed'
