@@ -1,0 +1,14 @@
+name: Experiment 2
+on: [push]
+
+jobs:
+  job2:
+    name: Job 2
+    needs: job1
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Dependant is Running
+      run: |
+        echo "Completed job 2, but triggering failure"
+        exit 1

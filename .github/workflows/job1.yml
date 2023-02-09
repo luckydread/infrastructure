@@ -1,0 +1,13 @@
+name: Experiment 1
+on: [push]
+
+jobs:
+  job1:
+    name: Job 1
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Sleep and Run
+      run: |
+        echo "Sleeping for 10"
+        sleep 10
