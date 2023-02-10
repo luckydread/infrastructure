@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: ["main"]
 env:
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: './infrastructure'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'infrastructure'
 jobs:
   tfsec:
     name: TFSEC_Checks
