@@ -4,6 +4,8 @@ on:
     branches: ["statistics"]
   pull_request:
     branches: ["main"]
+env:
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
 jobs:
   tfsec:
     name: TFSEC_Checks
@@ -32,23 +34,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}} # Only required for Organizations, not personal accounts.
 
-  build-environment:
-    name: Setup DotNet 2.2.402 Environment
+  build-environment-and-function-app:
+    name: Setup DotNet 2.2.402 Environment and build function
     needs: [tfsec,git-leaks]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 2.2.402
-  
-  build-function:
-    name: Build Azure Funcation App
-    runs-on: ubuntu-latest
-    env:
-      AZURE_FUNCTIONAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
-      shell: bash
-      run: |
-        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
-        dotnet build --configuration Release --output ./output
-        popd
-     
+      - name: Build Azure Function App
+        shell: bash
+        run: |
+          pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+          dotnet build --configuration Release --output ./output
+          popd
