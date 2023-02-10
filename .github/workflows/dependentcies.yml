@@ -37,8 +37,6 @@ jobs:
     needs: [ tfsec,git-leaks]
     runs-on: ubuntu-latest
     steps:
-    
-   
        - name: test
          run: |
           echo "The dependencies work!""
