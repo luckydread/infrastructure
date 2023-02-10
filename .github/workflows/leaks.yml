@@ -1,7 +1,7 @@
 name: Main Pipeline
 on:
   workflow_run:
-    workflows: [tfsec]
+    workflows: [tfsec_checks]
     types: 
       - completed
 
