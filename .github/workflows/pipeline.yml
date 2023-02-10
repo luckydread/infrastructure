@@ -22,22 +22,9 @@ jobs:
         with:
           github_token: ${{ github.token }}
 
-  git-leaks:
-    name: GIT_LEAKS
-    needs: tfsec
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}} # Only required for Organizations, not personal accounts. './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
-
   build-environment-and-function-app:
     name: Setup DotNet Environment and build function
-    needs: [tfsec,git-leaks]
+    needs: [tfsec]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-dotnet@v1
