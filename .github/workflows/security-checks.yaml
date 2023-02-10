@@ -22,7 +22,7 @@ jobs:
 
   git-leaks:
     name: GIT_LEAKS
-    depends_on: tfsec
+    needs: tfsec
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
