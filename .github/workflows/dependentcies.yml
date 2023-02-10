@@ -31,12 +31,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}} # Only required for Organizations, not personal accounts.
+
+  egit-leaks:
+    name: Test
+    needs: [ tfsec,git-leaks]
+    runs-on: ubuntu-latest
+    steps:
+    
    
-  build:
-      name: Cache_BUILDS
-      needs: [ tfsec,git-leaks]
-      runs-on: ubuntu-latest
-      steps:
-        run
-      
-        run: /primes.sh -d prime-numbers
+       - name: test
+         run: |
+          echo "The dependencies work!""
+    
