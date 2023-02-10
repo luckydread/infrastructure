@@ -6,7 +6,7 @@ on:
     branches: ["main"]
 jobs:
   tfsec:
-    name: tfsec
+    name: tfsec_checks
     runs-on: ubuntu-latest
 
     permissions:
