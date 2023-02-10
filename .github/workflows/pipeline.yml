@@ -6,7 +6,7 @@ on:
     branches: ["main"]
 env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
-  DOTNET_VERSION: '6.0.20'
+  DOTNET_VERSION: '6.0.0'
 jobs:
   tfsec:
     name: TFSEC_Checks
