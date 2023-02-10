@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: ["main"]
 env:
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'infrastructure'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
   DOTNET_VERSION: '6.0.202'
 jobs:
   tfsec:
@@ -33,7 +33,7 @@ jobs:
       - uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}} # Only required for Organizations, not personal accounts.
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}} # Only required for Organizations, not personal accounts. './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
 
   build-environment-and-function-app:
     name: Setup DotNet Environment and build function
@@ -46,6 +46,6 @@ jobs:
       - name: Build Azure Function App
         shell: bash
         run: |
-          pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+          pushd './functionApp'
           dotnet build --configuration Release --output ./output
           popd
