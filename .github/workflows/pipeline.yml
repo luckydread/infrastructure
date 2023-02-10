@@ -1,0 +1,51 @@
+name: Dependencies
+on:
+  push:
+    branches: ["statistics"]
+  pull_request:
+    branches: ["main"]
+env:
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'infrastructure'
+  DOTNET_VERSION: '6.0.202'
+jobs:
+  tfsec:
+    name: TFSEC_Checks
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@master
+      - name: tfsec
+        uses: aquasecurity/tfsec-pr-commenter-action@v1.2.0
+        with:
+          github_token: ${{ github.token }}
+
+  git-leaks:
+    name: GIT_LEAKS
+    needs: tfsec
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}} # Only required for Organizations, not personal accounts.
+
+  build-environment-and-function-app:
+    name: Setup DotNet Environment and build function
+    needs: [tfsec,git-leaks]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+      - name: Build Azure Function App
+        shell: bash
+        run: |
+          pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+          dotnet build --configuration Release --output ./output
+          popd
