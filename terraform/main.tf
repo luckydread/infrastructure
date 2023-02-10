@@ -16,7 +16,7 @@ terraform {
 provider "azurerm" {
   features {}
 }
-llllll
+
 module "app_service_plan" {
   source                        = "./app_service_plan"
   resource_group_location       = var.resource_group_location

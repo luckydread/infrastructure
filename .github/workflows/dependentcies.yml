@@ -32,12 +32,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}} # Only required for Organizations, not personal accounts.
 
-  egit-leaks:
-    name: Test
-    needs: [ tfsec,git-leaks]
+  build-environment:
+    name: Setup DotNet 2.2.402 Environment
+    # needs: [tfsec,git-leaks]
     runs-on: ubuntu-latest
     steps:
-       - name: test
-         run: |
-          echo "The dependencies work!""
-    
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 2.2.402
+     
